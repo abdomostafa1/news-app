@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 
-class NewsTile extends StatelessWidget {
-  const NewsTile({super.key});
+class NewsItem extends StatelessWidget {
+  const NewsItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      alignment: Alignment.bottomCenter,
-      decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(6), bottomLeft: Radius.circular(6))),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -42,7 +38,7 @@ class NewsTile extends StatelessWidget {
           const Text(
             'and here is the desciption of the news you can place your desc here',
             maxLines: 2,
-            style: TextStyle(color: Colors.black54, fontSize: 14),
+            style: TextStyle(color: Colors.grey, fontSize: 14),
           )
         ],
       ),
