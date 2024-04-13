@@ -1,14 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:news_app_ui_setup/network/news_service.dart';
 import 'package:news_app_ui_setup/widgets/category_listview.dart';
-import 'package:news_app_ui_setup/widgets/news_item.dart';
+import 'package:news_app_ui_setup/widgets/news_listview.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var articles=NewsService(Dio()).getNews();
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -28,21 +31,13 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        body:  CustomScrollView(
-          physics: RangeMaintainingScrollPhysics(),
+        body: const CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
-            const SliverToBoxAdapter(child: CategoryListView()),
-            const SliverToBoxAdapter(
-              child: SizedBox(
-                height: 16,
-              ),
-            ),
-            SliverList.builder(itemCount: 10, itemBuilder: (context, index) {
-              return const NewsItem();
-            })
+            SliverToBoxAdapter(child: CategoryListView()),
+            SliverToBoxAdapter(child: SizedBox(height: 16)),
+            NewsListView()
           ],
-        )
-
-        );
+        ));
   }
 }

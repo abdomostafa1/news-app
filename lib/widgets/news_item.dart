@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_ui_setup/models/article_model.dart';
 
 class NewsItem extends StatelessWidget {
-  const NewsItem({super.key});
+  const NewsItem({super.key, required this.article});
 
+  final ArticleModel article;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,7 +16,7 @@ class NewsItem extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.circular(6),
               child: Image.network(
-                'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
+                article.imageUrl??'https://webcolours.ca/wp-content/uploads/2020/10/webcolours-unknown.png',
                 height: 200,
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.cover,
@@ -22,11 +24,11 @@ class NewsItem extends StatelessWidget {
           const SizedBox(
             height: 12,
           ),
-          const Text(
-            'Large Title should be places in this place Large Title should be places in this place sdfadsf',
+           Text(
+            article.title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black87,
               fontSize: 20,
               fontWeight: FontWeight.w500,
@@ -35,10 +37,10 @@ class NewsItem extends StatelessWidget {
           const SizedBox(
             height: 4,
           ),
-          const Text(
-            'and here is the desciption of the news you can place your desc here',
+           Text(
+            article.description??'',
             maxLines: 2,
-            style: TextStyle(color: Colors.grey, fontSize: 14),
+            style: const TextStyle(color: Colors.grey, fontSize: 14),
           )
         ],
       ),
