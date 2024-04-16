@@ -5,7 +5,6 @@ import 'package:news_app_ui_setup/screens/home_screen.dart';
 import 'package:news_app_ui_setup/widgets/category_card.dart';
 
 void main() {
-  NewsService(Dio()).getNews();
   runApp( NewsApp());
 }
 

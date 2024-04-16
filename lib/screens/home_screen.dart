@@ -12,7 +12,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var articles=NewsService(Dio()).getNews();
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -37,7 +36,7 @@ class HomeScreen extends StatelessWidget {
           slivers: [
             SliverToBoxAdapter(child: CategoryListView()),
             SliverToBoxAdapter(child: SizedBox(height: 16)),
-            NewsListViewBuilder()
+            NewsListViewBuilder(category: 'general')
           ],
         ));
   }
