@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app_ui_setup/cubits/news_cubit/news_cubit.dart';
 import 'package:news_app_ui_setup/network/news_service.dart';
 import 'package:news_app_ui_setup/screens/home_screen.dart';
 import 'package:news_app_ui_setup/widgets/category_card.dart';
@@ -13,9 +15,12 @@ class NewsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+    return BlocProvider(
+      create:(context) => NewsCubit(NewsService(Dio())),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomeScreen(),
+      ),
     );
   }
 }

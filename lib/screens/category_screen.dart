@@ -9,13 +9,13 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: Padding(
-      padding: const EdgeInsets.only(top: 32),
+      padding: EdgeInsets.only(top: 32),
       child: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        physics: BouncingScrollPhysics(),
         slivers: [
-          NewsListViewBuilder(category: category),
+          NewsListViewBuilder(),
         ],
       ),
     ));

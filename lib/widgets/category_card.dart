@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app_ui_setup/models/category_model.dart';
 import 'package:news_app_ui_setup/screens/category_screen.dart';
+
+import '../cubits/news_cubit/news_cubit.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({super.key, required this.category});
@@ -11,12 +14,7 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  CategoryScreen(category: category.categoryName),
-            ));
+        BlocProvider.of<NewsCubit>(context).getNews(category: category.categoryName);
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 8.0),
@@ -43,3 +41,4 @@ class CategoryCard extends StatelessWidget {
     );
   }
 }
+
